@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-09T16:55:54.414Z",
+  "timestamp": "2026-03-09T17:08:58.085Z",
   "sites": [
     {
       "url": "https://www.mca.archi",
@@ -7,7 +7,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 1231ms",
+          "detail": "HTTP 200 — 848ms",
           "severity": "ok"
         },
         {
@@ -37,7 +37,7 @@
         {
           "name": "Response time",
           "ok": true,
-          "detail": "1231ms",
+          "detail": "848ms",
           "severity": "ok"
         },
         {
@@ -60,7 +60,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 1103ms",
+          "detail": "HTTP 200 — 886ms",
           "severity": "ok"
         },
         {
@@ -90,7 +90,7 @@
         {
           "name": "Response time",
           "ok": true,
-          "detail": "1103ms",
+          "detail": "886ms",
           "severity": "ok"
         },
         {
@@ -101,9 +101,9 @@
         },
         {
           "name": "XML-RPC",
-          "ok": false,
-          "detail": "XML-RPC is active (attack surface)",
-          "severity": "warning"
+          "ok": true,
+          "detail": "XML-RPC disabled or blocked",
+          "severity": "ok"
         }
       ]
     },
@@ -113,7 +113,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 1302ms",
+          "detail": "HTTP 200 — 1345ms",
           "severity": "ok"
         },
         {
@@ -143,7 +143,7 @@
         {
           "name": "Response time",
           "ok": true,
-          "detail": "1302ms",
+          "detail": "1345ms",
           "severity": "ok"
         },
         {
@@ -166,7 +166,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 1006ms",
+          "detail": "HTTP 200 — 895ms",
           "severity": "ok"
         },
         {
@@ -196,7 +196,7 @@
         {
           "name": "Response time",
           "ok": true,
-          "detail": "1006ms",
+          "detail": "895ms",
           "severity": "ok"
         },
         {
