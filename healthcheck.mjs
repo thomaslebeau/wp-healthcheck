@@ -15,7 +15,9 @@ import { URL } from "node:url";
 
 // ─── Configuration ───────────────────────────────────────────────────────────
 
-const SITES = JSON.parse(readFileSync(new URL("./sites.json", import.meta.url), "utf-8"));
+const SITES = JSON.parse(
+  readFileSync(new URL("./sites.json", import.meta.url), "utf-8"),
+);
 const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL || "";
 const TIMEOUT_MS = 15000;
 
@@ -29,7 +31,10 @@ const EXPECTED_SECURITY_HEADERS = [
 
 // ─── HTTP helpers ────────────────────────────────────────────────────────────
 
-function fetch(url, { method = "GET", followRedirects = 5, timeout = TIMEOUT_MS } = {}) {
+function fetch(
+  url,
+  { method = "GET", followRedirects = 5, timeout = TIMEOUT_MS } = {},
+) {
   return new Promise((resolve, reject) => {
     const parsedUrl = new URL(url);
     const client = parsedUrl.protocol === "https:" ? https : http;
@@ -38,9 +43,19 @@ function fetch(url, { method = "GET", followRedirects = 5, timeout = TIMEOUT_MS 
       parsedUrl,
       { method, timeout, headers: { "User-Agent": "WP-HealthCheck/1.0" } },
       (res) => {
-        if ([301, 302, 307, 308].includes(res.statusCode) && res.headers.location && followRedirects > 0) {
+        if (
+          [301, 302, 307, 308].includes(res.statusCode) &&
+          res.headers.location &&
+          followRedirects > 0
+        ) {
           const next = new URL(res.headers.location, url).href;
-          resolve(fetch(next, { method, followRedirects: followRedirects - 1, timeout }));
+          resolve(
+            fetch(next, {
+              method,
+              followRedirects: followRedirects - 1,
+              timeout,
+            }),
+          );
           return;
         }
 
@@ -53,7 +68,7 @@ function fetch(url, { method = "GET", followRedirects = 5, timeout = TIMEOUT_MS 
             body: Buffer.concat(chunks).toString("utf-8"),
           });
         });
-      }
+      },
     );
 
     req.on("timeout", () => {
@@ -76,12 +91,18 @@ async function checkUptime(url) {
       name: "Uptime",
       ok: res.status >= 200 && res.status < 400,
       detail: `HTTP ${res.status} — ${elapsed}ms`,
-      severity: res.status >= 500 ? "critical" : res.status >= 400 ? "warning" : "ok",
+      severity:
+        res.status >= 500 ? "critical" : res.status >= 400 ? "warning" : "ok",
       _res: res,
       _elapsed: elapsed,
     };
   } catch (err) {
-    return { name: "Uptime", ok: false, detail: err.message, severity: "critical" };
+    return {
+      name: "Uptime",
+      ok: false,
+      detail: err.message,
+      severity: "critical",
+    };
   }
 }
 
@@ -100,13 +121,17 @@ function checkSecurityHeaders(headers) {
   return {
     name: "Security headers",
     ok: missing.length === 0,
-    detail: missing.length === 0 ? "All present" : `Missing: ${missing.join(", ")}`,
-    severity: missing.length > 2 ? "warning" : missing.length > 0 ? "info" : "ok",
+    detail:
+      missing.length === 0 ? "All present" : `Missing: ${missing.join(", ")}`,
+    severity:
+      missing.length > 2 ? "warning" : missing.length > 0 ? "info" : "ok",
   };
 }
 
 function checkWPVersionExposed(body) {
-  const match = body.match(/<meta\s+name=["']generator["']\s+content=["']WordPress\s+([\d.]+)["']/i);
+  const match = body.match(
+    /<meta\s+name=["']generator["']\s+content=["']WordPress\s+([\d.]+)["']/i,
+  );
   return {
     name: "WP version exposed",
     ok: !match,
@@ -116,46 +141,68 @@ function checkWPVersionExposed(body) {
 }
 
 function checkCSSIntegrity(body) {
-  const stylesheetLinks = body.match(/<link[^>]+rel=["']stylesheet["'][^>]*>/gi) || [];
-  const hasStylesheets = stylesheetLinks.length > 0;
-  const has404Hint = body.includes("404") && body.includes("not found");
+  const linkTags = body.match(/<link[^>]+stylesheet[^>]*>/gi) || [];
+  const styleTags = body.match(/<style[\s>]/gi) || [];
+  const cssImports = body.match(/@import\s/gi) || [];
+  const totalCSS = linkTags.length + styleTags.length + cssImports.length;
+  const hasCSS = totalCSS > 0;
   return {
     name: "CSS integrity",
-    ok: hasStylesheets && !has404Hint,
-    detail: hasStylesheets
-      ? `${stylesheetLinks.length} stylesheet(s) found`
-      : "No stylesheets detected — possible broken theme",
-    severity: hasStylesheets ? "ok" : "critical",
+    ok: hasCSS,
+    detail: hasCSS
+      ? `${totalCSS} CSS source(s) found (${linkTags.length} link, ${styleTags.length} inline, ${cssImports.length} import)`
+      : "No CSS detected — possible broken theme",
+    severity: hasCSS ? "ok" : "critical",
   };
 }
 
 async function checkLoginExposed(baseUrl) {
   try {
-    const res = await fetch(`${baseUrl.replace(/\/$/, "")}/wp-login.php`, { method: "GET" });
+    const res = await fetch(`${baseUrl.replace(/\/$/, "")}/wp-login.php`, {
+      method: "GET",
+    });
     const exposed = res.status === 200 && res.body.includes("wp-login");
     return {
       name: "wp-login exposed",
       ok: !exposed,
-      detail: exposed ? "Default login page is publicly accessible" : "Login page hidden or protected",
+      detail: exposed
+        ? "Default login page is publicly accessible"
+        : "Login page hidden or protected",
       severity: exposed ? "info" : "ok",
     };
   } catch {
-    return { name: "wp-login exposed", ok: true, detail: "Not reachable (good)", severity: "ok" };
+    return {
+      name: "wp-login exposed",
+      ok: true,
+      detail: "Not reachable (good)",
+      severity: "ok",
+    };
   }
 }
 
 async function checkXMLRPC(baseUrl) {
   try {
-    const res = await fetch(`${baseUrl.replace(/\/$/, "")}/xmlrpc.php`, { method: "GET" });
-    const enabled = res.status === 405 || (res.status === 200 && res.body.includes("XML-RPC"));
+    const res = await fetch(`${baseUrl.replace(/\/$/, "")}/xmlrpc.php`, {
+      method: "GET",
+    });
+    const enabled =
+      res.status === 405 ||
+      (res.status === 200 && res.body.includes("XML-RPC"));
     return {
       name: "XML-RPC",
       ok: !enabled,
-      detail: enabled ? "XML-RPC is active (attack surface)" : "XML-RPC disabled or blocked",
+      detail: enabled
+        ? "XML-RPC is active (attack surface)"
+        : "XML-RPC disabled or blocked",
       severity: enabled ? "warning" : "ok",
     };
   } catch {
-    return { name: "XML-RPC", ok: true, detail: "Not reachable (good)", severity: "ok" };
+    return {
+      name: "XML-RPC",
+      ok: true,
+      detail: "Not reachable (good)",
+      severity: "ok",
+    };
   }
 }
 
@@ -219,7 +266,11 @@ function formatReport(allResults) {
     lines.push("");
   }
 
-  lines.push(issueCount === 0 ? "All sites healthy ✨" : `⚠️ ${issueCount} issue(s) found`);
+  lines.push(
+    issueCount === 0
+      ? "All sites healthy ✨"
+      : `⚠️ ${issueCount} issue(s) found`,
+  );
   return lines.join("\n");
 }
 
@@ -235,10 +286,14 @@ async function sendSlack(text) {
   const url = new URL(SLACK_WEBHOOK_URL);
 
   return new Promise((resolve, reject) => {
-    const req = https.request(url, { method: "POST", headers: { "Content-Type": "application/json" } }, (res) => {
-      res.on("data", () => {});
-      res.on("end", resolve);
-    });
+    const req = https.request(
+      url,
+      { method: "POST", headers: { "Content-Type": "application/json" } },
+      (res) => {
+        res.on("data", () => {});
+        res.on("end", resolve);
+      },
+    );
     req.on("error", reject);
     req.write(payload);
     req.end();
@@ -253,7 +308,10 @@ async function writeJSON(allResults) {
     timestamp: new Date().toISOString(),
     sites: allResults,
   };
-  writeFileSync(new URL("./results.json", import.meta.url), JSON.stringify(output, null, 2));
+  writeFileSync(
+    new URL("./results.json", import.meta.url),
+    JSON.stringify(output, null, 2),
+  );
   console.log("Results written to results.json");
 }
 
@@ -267,7 +325,10 @@ async function main() {
   for (const url of SITES) {
     console.log(`→ ${url}`);
     const checks = await auditSite(url);
-    allResults.push({ url, checks: checks.map(({ _res, _elapsed, ...rest }) => rest) });
+    allResults.push({
+      url,
+      checks: checks.map(({ _res, _elapsed, ...rest }) => rest),
+    });
   }
 
   const report = formatReport(allResults);
