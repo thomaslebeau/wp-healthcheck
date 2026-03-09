@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-09T15:01:13.264Z",
+  "timestamp": "2026-03-09T15:10:52.930Z",
   "sites": [
     {
       "url": "https://mca.archi",
@@ -7,7 +7,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 6629ms",
+          "detail": "HTTP 200 — 9867ms",
           "severity": "ok"
         },
         {
@@ -37,7 +37,7 @@
         {
           "name": "Response time",
           "ok": false,
-          "detail": "6629ms",
+          "detail": "9867ms",
           "severity": "warning"
         },
         {
@@ -60,7 +60,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 898ms",
+          "detail": "HTTP 200 — 944ms",
           "severity": "ok"
         },
         {
@@ -90,7 +90,113 @@
         {
           "name": "Response time",
           "ok": true,
-          "detail": "898ms",
+          "detail": "944ms",
+          "severity": "ok"
+        },
+        {
+          "name": "wp-login exposed",
+          "ok": false,
+          "detail": "Default login page is publicly accessible",
+          "severity": "info"
+        },
+        {
+          "name": "XML-RPC",
+          "ok": false,
+          "detail": "XML-RPC is active (attack surface)",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "url": "https://lesbrasseursenerdre.fr/",
+      "checks": [
+        {
+          "name": "Uptime",
+          "ok": true,
+          "detail": "HTTP 200 — 685ms",
+          "severity": "ok"
+        },
+        {
+          "name": "SSL/HTTPS",
+          "ok": true,
+          "detail": "HTTPS active",
+          "severity": "ok"
+        },
+        {
+          "name": "Security headers",
+          "ok": false,
+          "detail": "Missing: x-content-type-options, x-frame-options, strict-transport-security, referrer-policy",
+          "severity": "warning"
+        },
+        {
+          "name": "WP version exposed",
+          "ok": false,
+          "detail": "WordPress 6.9.1 visible in source",
+          "severity": "warning"
+        },
+        {
+          "name": "CSS integrity",
+          "ok": true,
+          "detail": "8 CSS source(s) found (3 link, 5 inline, 0 import)",
+          "severity": "ok"
+        },
+        {
+          "name": "Response time",
+          "ok": true,
+          "detail": "685ms",
+          "severity": "ok"
+        },
+        {
+          "name": "wp-login exposed",
+          "ok": false,
+          "detail": "Default login page is publicly accessible",
+          "severity": "info"
+        },
+        {
+          "name": "XML-RPC",
+          "ok": false,
+          "detail": "XML-RPC is active (attack surface)",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "url": "https://bevoak.com/",
+      "checks": [
+        {
+          "name": "Uptime",
+          "ok": true,
+          "detail": "HTTP 200 — 906ms",
+          "severity": "ok"
+        },
+        {
+          "name": "SSL/HTTPS",
+          "ok": true,
+          "detail": "HTTPS active",
+          "severity": "ok"
+        },
+        {
+          "name": "Security headers",
+          "ok": false,
+          "detail": "Missing: x-content-type-options, x-frame-options, strict-transport-security, content-security-policy, referrer-policy",
+          "severity": "warning"
+        },
+        {
+          "name": "WP version exposed",
+          "ok": false,
+          "detail": "WordPress 6.9.1 visible in source",
+          "severity": "warning"
+        },
+        {
+          "name": "CSS integrity",
+          "ok": true,
+          "detail": "10 CSS source(s) found (2 link, 8 inline, 0 import)",
+          "severity": "ok"
+        },
+        {
+          "name": "Response time",
+          "ok": true,
+          "detail": "906ms",
           "severity": "ok"
         },
         {
