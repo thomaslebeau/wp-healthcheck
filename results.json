@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-09T14:42:30.947Z",
+  "timestamp": "2026-03-09T14:54:56.885Z",
   "sites": [
     {
       "url": "https://mca.archi",
@@ -7,7 +7,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 3331ms",
+          "detail": "HTTP 200 — 2332ms",
           "severity": "ok"
         },
         {
@@ -31,14 +31,14 @@
         {
           "name": "CSS integrity",
           "ok": true,
-          "detail": "1 stylesheet(s) found",
+          "detail": "6 CSS source(s) found (1 link, 5 inline, 0 import)",
           "severity": "ok"
         },
         {
           "name": "Response time",
           "ok": true,
-          "detail": "3331ms",
-          "severity": "info"
+          "detail": "2332ms",
+          "severity": "ok"
         },
         {
           "name": "wp-login exposed",
@@ -60,7 +60,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 672ms",
+          "detail": "HTTP 200 — 575ms",
           "severity": "ok"
         },
         {
@@ -84,13 +84,13 @@
         {
           "name": "CSS integrity",
           "ok": false,
-          "detail": "No stylesheets detected — possible broken theme",
+          "detail": "No CSS detected — possible broken theme",
           "severity": "critical"
         },
         {
           "name": "Response time",
           "ok": true,
-          "detail": "672ms",
+          "detail": "575ms",
           "severity": "ok"
         },
         {
