@@ -1,0 +1,111 @@
+{
+  "timestamp": "2026-03-09T14:42:30.947Z",
+  "sites": [
+    {
+      "url": "https://mca.archi",
+      "checks": [
+        {
+          "name": "Uptime",
+          "ok": true,
+          "detail": "HTTP 200 — 3331ms",
+          "severity": "ok"
+        },
+        {
+          "name": "SSL/HTTPS",
+          "ok": true,
+          "detail": "HTTPS active",
+          "severity": "ok"
+        },
+        {
+          "name": "Security headers",
+          "ok": false,
+          "detail": "Missing: x-content-type-options, x-frame-options, strict-transport-security, content-security-policy, referrer-policy",
+          "severity": "warning"
+        },
+        {
+          "name": "WP version exposed",
+          "ok": false,
+          "detail": "WordPress 6.9.1 visible in source",
+          "severity": "warning"
+        },
+        {
+          "name": "CSS integrity",
+          "ok": true,
+          "detail": "1 stylesheet(s) found",
+          "severity": "ok"
+        },
+        {
+          "name": "Response time",
+          "ok": true,
+          "detail": "3331ms",
+          "severity": "info"
+        },
+        {
+          "name": "wp-login exposed",
+          "ok": false,
+          "detail": "Default login page is publicly accessible",
+          "severity": "info"
+        },
+        {
+          "name": "XML-RPC",
+          "ok": false,
+          "detail": "XML-RPC is active (attack surface)",
+          "severity": "warning"
+        }
+      ]
+    },
+    {
+      "url": "https://atelier-lau.fr/",
+      "checks": [
+        {
+          "name": "Uptime",
+          "ok": true,
+          "detail": "HTTP 200 — 672ms",
+          "severity": "ok"
+        },
+        {
+          "name": "SSL/HTTPS",
+          "ok": true,
+          "detail": "HTTPS active",
+          "severity": "ok"
+        },
+        {
+          "name": "Security headers",
+          "ok": false,
+          "detail": "Missing: x-content-type-options, x-frame-options, strict-transport-security, content-security-policy, referrer-policy",
+          "severity": "warning"
+        },
+        {
+          "name": "WP version exposed",
+          "ok": true,
+          "detail": "Not exposed",
+          "severity": "ok"
+        },
+        {
+          "name": "CSS integrity",
+          "ok": false,
+          "detail": "No stylesheets detected — possible broken theme",
+          "severity": "critical"
+        },
+        {
+          "name": "Response time",
+          "ok": true,
+          "detail": "672ms",
+          "severity": "ok"
+        },
+        {
+          "name": "wp-login exposed",
+          "ok": false,
+          "detail": "Default login page is publicly accessible",
+          "severity": "info"
+        },
+        {
+          "name": "XML-RPC",
+          "ok": false,
+          "detail": "XML-RPC is active (attack surface)",
+          "severity": "warning"
+        }
+      ]
+    }
+  ]
+}
