@@ -41,7 +41,14 @@ function fetch(
 
     const req = client.request(
       parsedUrl,
-      { method, timeout, headers: { "User-Agent": "WP-HealthCheck/1.0" } },
+      {
+        method,
+        timeout,
+        headers: {
+          "User-Agent": "WP-HealthCheck/1.0",
+          "Accept-Encoding": "identity",
+        },
+      },
       (res) => {
         if (
           [301, 302, 307, 308].includes(res.statusCode) &&
