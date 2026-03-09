@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-09T15:37:04.610Z",
+  "timestamp": "2026-03-09T16:00:53.678Z",
   "sites": [
     {
       "url": "https://www.mca.archi",
@@ -7,7 +7,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 1645ms",
+          "detail": "HTTP 200 — 1662ms",
           "severity": "ok"
         },
         {
@@ -37,7 +37,7 @@
         {
           "name": "Response time",
           "ok": true,
-          "detail": "1645ms",
+          "detail": "1662ms",
           "severity": "ok"
         },
         {
@@ -60,7 +60,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 1404ms",
+          "detail": "HTTP 200 — 3094ms",
           "severity": "ok"
         },
         {
@@ -90,8 +90,8 @@
         {
           "name": "Response time",
           "ok": true,
-          "detail": "1404ms",
-          "severity": "ok"
+          "detail": "3094ms",
+          "severity": "info"
         },
         {
           "name": "wp-login exposed",
@@ -101,9 +101,9 @@
         },
         {
           "name": "XML-RPC",
-          "ok": false,
-          "detail": "XML-RPC is active (attack surface)",
-          "severity": "warning"
+          "ok": true,
+          "detail": "XML-RPC disabled or blocked",
+          "severity": "ok"
         }
       ]
     },
@@ -113,7 +113,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 1004ms",
+          "detail": "HTTP 200 — 1041ms",
           "severity": "ok"
         },
         {
@@ -143,7 +143,7 @@
         {
           "name": "Response time",
           "ok": true,
-          "detail": "1004ms",
+          "detail": "1041ms",
           "severity": "ok"
         },
         {
@@ -166,7 +166,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 1440ms",
+          "detail": "HTTP 200 — 1354ms",
           "severity": "ok"
         },
         {
@@ -196,7 +196,7 @@
         {
           "name": "Response time",
           "ok": true,
-          "detail": "1440ms",
+          "detail": "1354ms",
           "severity": "ok"
         },
         {
