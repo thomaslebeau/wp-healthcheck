@@ -45,7 +45,7 @@ function fetch(
         method,
         timeout,
         headers: {
-          "User-Agent": "WP-HealthCheck/1.0",
+          "User-Agent": "Mozilla/5.0 (compatible; WP-HealthCheck/1.0)",
           "Accept-Encoding": "identity",
         },
       },
