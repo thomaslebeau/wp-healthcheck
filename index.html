@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WP Health Check</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0c0e11;
+      --surface: #14171c;
+      --surface-hover: #1a1e25;
+      --border: #23282f;
+      --text: #c8cdd5;
+      --text-muted: #6b7280;
+      --green: #22c55e;
+      --green-bg: rgba(34, 197, 94, 0.08);
+      --yellow: #eab308;
+      --yellow-bg: rgba(234, 179, 8, 0.08);
+      --red: #ef4444;
+      --red-bg: rgba(239, 68, 68, 0.08);
+      --blue: #3b82f6;
+      --blue-bg: rgba(59, 130, 246, 0.08);
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header h1 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .header h1 span {
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .timestamp {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .status-bar {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .status-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.35rem 0.75rem;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .status-pill.ok { background: var(--green-bg); color: var(--green); }
+    .status-pill.warning { background: var(--yellow-bg); color: var(--yellow); }
+    .status-pill.critical { background: var(--red-bg); color: var(--red); }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .sites-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .site-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: border-color 0.15s;
+    }
+
+    .site-card:hover {
+      border-color: #2d333b;
+    }
+
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .site-header:hover {
+      background: var(--surface-hover);
+    }
+
+    .site-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .site-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .site-indicator.ok { background: var(--green); box-shadow: 0 0 8px rgba(34, 197, 94, 0.4); }
+    .site-indicator.warning { background: var(--yellow); box-shadow: 0 0 8px rgba(234, 179, 8, 0.4); }
+    .site-indicator.critical { background: var(--red); box-shadow: 0 0 8px rgba(239, 68, 68, 0.4); }
+
+    .site-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .expand-icon {
+      transition: transform 0.2s;
+      color: var(--text-muted);
+    }
+
+    .site-card.expanded .expand-icon {
+      transform: rotate(180deg);
+    }
+
+    .checks-list {
+      display: none;
+      border-top: 1px solid var(--border);
+    }
+
+    .site-card.expanded .checks-list {
+      display: block;
+    }
+
+    .check-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.65rem 1.25rem;
+      font-size: 0.8rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .check-row:last-child {
+      border-bottom: none;
+    }
+
+    .check-row:hover {
+      background: var(--surface-hover);
+    }
+
+    .check-name {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+    }
+
+    .check-icon {
+      width: 16px;
+      height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    .check-icon.ok { background: var(--green-bg); color: var(--green); }
+    .check-icon.warning { background: var(--yellow-bg); color: var(--yellow); }
+    .check-icon.critical { background: var(--red-bg); color: var(--red); }
+    .check-icon.info { background: var(--blue-bg); color: var(--blue); }
+
+    .check-detail {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-align: right;
+      max-width: 55%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 4rem;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+    }
+
+    .loading::after {
+      content: '';
+      animation: dots 1.5s steps(4) infinite;
+    }
+
+    @keyframes dots {
+      0% { content: ''; }
+      25% { content: '.'; }
+      50% { content: '..'; }
+      75% { content: '...'; }
+    }
+
+    .error-msg {
+      text-align: center;
+      padding: 4rem;
+      color: var(--red);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 1rem; }
+      .header { flex-direction: column; gap: 0.5rem; }
+      .status-bar { flex-wrap: wrap; gap: 0.5rem; }
+      .check-detail { max-width: 45%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>wp-healthcheck <span>/ dashboard</span></h1>
+    <div class="timestamp" id="timestamp">loading</div>
+  </div>
+  <div class="status-bar" id="statusBar"></div>
+  <div class="sites-grid" id="sitesGrid">
+    <div class="loading" id="loading">Fetching results</div>
+  </div>
+
+  <script>
+    const SEVERITY_ORDER = { critical: 0, warning: 1, info: 2, ok: 3 };
+    const CHECK_ICONS = { ok: "✓", warning: "!", critical: "✕", info: "i" };
+
+    async function loadResults() {
+      try {
+        const res = await fetch("results.json?" + Date.now());
+        if (!res.ok) throw new Error("No results.json found");
+        return await res.json();
+      } catch (e) {
+        document.getElementById("loading").className = "error-msg";
+        document.getElementById("loading").textContent =
+          "No results yet — run the health check first";
+        return null;
+      }
+    }
+
+    function worstSeverity(checks) {
+      return checks.reduce(
+        (worst, c) =>
+          SEVERITY_ORDER[c.severity] < SEVERITY_ORDER[worst] ? c.severity : worst,
+        "ok"
+      );
+    }
+
+    function renderStatusBar(data) {
+      const bar = document.getElementById("statusBar");
+      const counts = { ok: 0, warning: 0, critical: 0 };
+      data.sites.forEach((s) => {
+        const w = worstSeverity(s.checks);
+        if (w === "critical") counts.critical++;
+        else if (w === "warning" || w === "info") counts.warning++;
+        else counts.ok++;
+      });
+
+      bar.innerHTML = `
+        <div class="status-pill ok"><span class="status-dot"></span>${counts.ok} healthy</div>
+        ${counts.warning ? `<div class="status-pill warning"><span class="status-dot"></span>${counts.warning} warning(s)</div>` : ""}
+        ${counts.critical ? `<div class="status-pill critical"><span class="status-dot"></span>${counts.critical} critical</div>` : ""}
+      `;
+    }
+
+    function renderSites(data) {
+      const grid = document.getElementById("sitesGrid");
+      grid.innerHTML = "";
+
+      const sorted = [...data.sites].sort(
+        (a, b) => SEVERITY_ORDER[worstSeverity(a.checks)] - SEVERITY_ORDER[worstSeverity(b.checks)]
+      );
+
+      sorted.forEach((site) => {
+        const severity = worstSeverity(site.checks);
+        const issues = site.checks.filter((c) => c.severity !== "ok").length;
+        const card = document.createElement("div");
+        card.className = "site-card";
+
+        card.innerHTML = `
+          <div class="site-header" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="site-name">
+              <span class="site-indicator ${severity}"></span>
+              ${site.url.replace(/^https?:\/\//, "")}
+            </div>
+            <div class="site-meta">
+              ${issues ? `<span>${issues} issue${issues > 1 ? "s" : ""}</span>` : "<span>all clear</span>"}
+              <svg class="expand-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="checks-list">
+            ${site.checks
+              .map(
+                (c) => `
+              <div class="check-row">
+                <div class="check-name">
+                  <span class="check-icon ${c.severity}">${CHECK_ICONS[c.severity]}</span>
+                  ${c.name}
+                </div>
+                <div class="check-detail">${c.detail}</div>
+              </div>
+            `
+              )
+              .join("")}
+          </div>
+        `;
+
+        grid.appendChild(card);
+      });
+    }
+
+    function renderTimestamp(data) {
+      const d = new Date(data.timestamp);
+      document.getElementById("timestamp").textContent =
+        `Last check: ${d.toLocaleDateString("fr-FR")} ${d.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" })}`;
+    }
+
+    async function init() {
+      const data = await loadResults();
+      if (!data) return;
+      renderTimestamp(data);
+      renderStatusBar(data);
+      renderSites(data);
+    }
+
+    init();
+  </script>
+</body>
+</html>
