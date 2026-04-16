@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-15T08:31:18.365Z",
+  "timestamp": "2026-04-16T08:30:56.327Z",
   "sites": [
     {
       "url": "https://www.mca.archi",
@@ -7,7 +7,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 987ms",
+          "detail": "HTTP 200 — 1012ms",
           "severity": "ok"
         },
         {
@@ -37,7 +37,7 @@
         {
           "name": "Response time",
           "ok": true,
-          "detail": "987ms",
+          "detail": "1012ms",
           "severity": "ok"
         },
         {
@@ -60,7 +60,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 926ms",
+          "detail": "HTTP 200 — 766ms",
           "severity": "ok"
         },
         {
@@ -90,7 +90,7 @@
         {
           "name": "Response time",
           "ok": true,
-          "detail": "926ms",
+          "detail": "766ms",
           "severity": "ok"
         },
         {
@@ -113,7 +113,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 6374ms",
+          "detail": "HTTP 200 — 1448ms",
           "severity": "ok"
         },
         {
@@ -142,9 +142,9 @@
         },
         {
           "name": "Response time",
-          "ok": false,
-          "detail": "6374ms",
-          "severity": "warning"
+          "ok": true,
+          "detail": "1448ms",
+          "severity": "ok"
         },
         {
           "name": "wp-login exposed",
@@ -166,7 +166,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 980ms",
+          "detail": "HTTP 200 — 810ms",
           "severity": "ok"
         },
         {
@@ -196,7 +196,7 @@
         {
           "name": "Response time",
           "ok": true,
-          "detail": "980ms",
+          "detail": "810ms",
           "severity": "ok"
         },
         {
