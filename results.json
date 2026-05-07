@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-05-06T08:47:18.453Z",
+  "timestamp": "2026-05-07T08:51:53.828Z",
   "sites": [
     {
       "url": "https://www.mca.archi",
@@ -7,7 +7,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 1056ms",
+          "detail": "HTTP 200 — 662ms",
           "severity": "ok"
         },
         {
@@ -37,7 +37,7 @@
         {
           "name": "Response time",
           "ok": true,
-          "detail": "1056ms",
+          "detail": "662ms",
           "severity": "ok"
         },
         {
@@ -60,7 +60,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 973ms",
+          "detail": "HTTP 200 — 756ms",
           "severity": "ok"
         },
         {
@@ -90,7 +90,7 @@
         {
           "name": "Response time",
           "ok": true,
-          "detail": "973ms",
+          "detail": "756ms",
           "severity": "ok"
         },
         {
@@ -113,7 +113,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 1658ms",
+          "detail": "HTTP 200 — 1522ms",
           "severity": "ok"
         },
         {
@@ -143,7 +143,7 @@
         {
           "name": "Response time",
           "ok": true,
-          "detail": "1658ms",
+          "detail": "1522ms",
           "severity": "ok"
         },
         {
@@ -165,14 +165,38 @@
       "checks": [
         {
           "name": "Uptime",
-          "ok": false,
-          "detail": "write EPROTO 80CC4D5CC27F0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:../deps/openssl/openssl/ssl/record/rec_layer_s3.c:1601:SSL alert number 80\n",
-          "severity": "critical"
+          "ok": true,
+          "detail": "HTTP 200 — 897ms",
+          "severity": "ok"
         },
         {
           "name": "SSL/HTTPS",
           "ok": true,
           "detail": "HTTPS active",
+          "severity": "ok"
+        },
+        {
+          "name": "Security headers",
+          "ok": false,
+          "detail": "Missing: x-content-type-options, x-frame-options, strict-transport-security, content-security-policy, referrer-policy",
+          "severity": "warning"
+        },
+        {
+          "name": "WP version exposed",
+          "ok": false,
+          "detail": "WordPress 6.9.4 visible in source",
+          "severity": "warning"
+        },
+        {
+          "name": "CSS integrity",
+          "ok": true,
+          "detail": "10 CSS source(s) found (2 link, 8 inline, 0 import)",
+          "severity": "ok"
+        },
+        {
+          "name": "Response time",
+          "ok": true,
+          "detail": "897ms",
           "severity": "ok"
         },
         {
