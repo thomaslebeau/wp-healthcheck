@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-05-13T08:57:52.128Z",
+  "timestamp": "2026-05-14T08:53:38.377Z",
   "sites": [
     {
       "url": "https://www.mca.archi",
@@ -7,7 +7,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 955ms",
+          "detail": "HTTP 200 — 860ms",
           "severity": "ok"
         },
         {
@@ -37,7 +37,7 @@
         {
           "name": "Response time",
           "ok": true,
-          "detail": "955ms",
+          "detail": "860ms",
           "severity": "ok"
         },
         {
@@ -60,7 +60,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 1119ms",
+          "detail": "HTTP 200 — 820ms",
           "severity": "ok"
         },
         {
@@ -90,7 +90,7 @@
         {
           "name": "Response time",
           "ok": true,
-          "detail": "1119ms",
+          "detail": "820ms",
           "severity": "ok"
         },
         {
@@ -113,7 +113,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 1572ms",
+          "detail": "HTTP 200 — 662ms",
           "severity": "ok"
         },
         {
@@ -143,7 +143,7 @@
         {
           "name": "Response time",
           "ok": true,
-          "detail": "1572ms",
+          "detail": "662ms",
           "severity": "ok"
         },
         {
@@ -166,7 +166,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 1095ms",
+          "detail": "HTTP 200 — 2513ms",
           "severity": "ok"
         },
         {
@@ -196,20 +196,20 @@
         {
           "name": "Response time",
           "ok": true,
-          "detail": "1095ms",
+          "detail": "2513ms",
           "severity": "ok"
         },
         {
           "name": "wp-login exposed",
-          "ok": false,
-          "detail": "Default login page is publicly accessible",
-          "severity": "info"
+          "ok": true,
+          "detail": "Not reachable (good)",
+          "severity": "ok"
         },
         {
           "name": "XML-RPC",
-          "ok": false,
-          "detail": "XML-RPC is active (attack surface)",
-          "severity": "warning"
+          "ok": true,
+          "detail": "XML-RPC disabled or blocked",
+          "severity": "ok"
         }
       ]
     }
