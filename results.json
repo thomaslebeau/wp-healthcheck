@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-16T09:44:27.200Z",
+  "timestamp": "2026-06-17T09:32:35.515Z",
   "sites": [
     {
       "url": "https://www.mca.archi",
@@ -7,7 +7,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 1157ms",
+          "detail": "HTTP 200 — 944ms",
           "severity": "ok"
         },
         {
@@ -37,7 +37,7 @@
         {
           "name": "Response time",
           "ok": true,
-          "detail": "1157ms",
+          "detail": "944ms",
           "severity": "ok"
         },
         {
@@ -60,7 +60,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 1060ms",
+          "detail": "HTTP 200 — 1284ms",
           "severity": "ok"
         },
         {
@@ -90,7 +90,7 @@
         {
           "name": "Response time",
           "ok": true,
-          "detail": "1060ms",
+          "detail": "1284ms",
           "severity": "ok"
         },
         {
@@ -142,7 +142,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 1118ms",
+          "detail": "HTTP 200 — 1116ms",
           "severity": "ok"
         },
         {
@@ -172,7 +172,7 @@
         {
           "name": "Response time",
           "ok": true,
-          "detail": "1118ms",
+          "detail": "1116ms",
           "severity": "ok"
         },
         {
