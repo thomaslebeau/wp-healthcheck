@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-08-07T08:45:49.510Z",
+  "timestamp": "2026-08-08T08:27:34.206Z",
   "sites": [
     {
       "url": "https://www.mca.archi",
@@ -7,7 +7,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 895ms",
+          "detail": "HTTP 200 — 639ms",
           "severity": "ok"
         },
         {
@@ -37,7 +37,7 @@
         {
           "name": "Response time",
           "ok": true,
-          "detail": "895ms",
+          "detail": "639ms",
           "severity": "ok"
         },
         {
@@ -60,7 +60,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 1023ms",
+          "detail": "HTTP 200 — 832ms",
           "severity": "ok"
         },
         {
@@ -78,7 +78,7 @@
         {
           "name": "WP version exposed",
           "ok": false,
-          "detail": "WordPress 7.0.2 visible in source",
+          "detail": "WordPress 7.0.3 visible in source",
           "severity": "warning"
         },
         {
@@ -90,7 +90,7 @@
         {
           "name": "Response time",
           "ok": true,
-          "detail": "1023ms",
+          "detail": "832ms",
           "severity": "ok"
         },
         {
@@ -113,7 +113,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 1633ms",
+          "detail": "HTTP 200 — 1002ms",
           "severity": "ok"
         },
         {
@@ -143,7 +143,7 @@
         {
           "name": "Response time",
           "ok": true,
-          "detail": "1633ms",
+          "detail": "1002ms",
           "severity": "ok"
         },
         {
@@ -166,7 +166,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 1121ms",
+          "detail": "HTTP 200 — 854ms",
           "severity": "ok"
         },
         {
@@ -196,7 +196,7 @@
         {
           "name": "Response time",
           "ok": true,
-          "detail": "1121ms",
+          "detail": "854ms",
           "severity": "ok"
         },
         {
