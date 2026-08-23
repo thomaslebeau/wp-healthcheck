@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-08-22T08:16:56.512Z",
+  "timestamp": "2026-08-23T08:17:39.759Z",
   "sites": [
     {
       "url": "https://www.mca.archi",
@@ -7,7 +7,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 777ms",
+          "detail": "HTTP 200 — 975ms",
           "severity": "ok"
         },
         {
@@ -37,7 +37,7 @@
         {
           "name": "Response time",
           "ok": true,
-          "detail": "777ms",
+          "detail": "975ms",
           "severity": "ok"
         },
         {
@@ -60,7 +60,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 782ms",
+          "detail": "HTTP 200 — 1033ms",
           "severity": "ok"
         },
         {
@@ -90,7 +90,7 @@
         {
           "name": "Response time",
           "ok": true,
-          "detail": "782ms",
+          "detail": "1033ms",
           "severity": "ok"
         },
         {
@@ -112,9 +112,9 @@
       "checks": [
         {
           "name": "Uptime",
-          "ok": true,
-          "detail": "HTTP 200 — 1193ms",
-          "severity": "ok"
+          "ok": false,
+          "detail": "",
+          "severity": "critical"
         },
         {
           "name": "SSL/HTTPS",
@@ -123,39 +123,15 @@
           "severity": "ok"
         },
         {
-          "name": "Security headers",
-          "ok": false,
-          "detail": "Missing: x-content-type-options, x-frame-options, strict-transport-security, referrer-policy",
-          "severity": "warning"
-        },
-        {
-          "name": "WP version exposed",
-          "ok": false,
-          "detail": "WordPress 7.1 visible in source",
-          "severity": "warning"
-        },
-        {
-          "name": "CSS integrity",
-          "ok": true,
-          "detail": "8 CSS source(s) found (3 link, 5 inline, 0 import)",
-          "severity": "ok"
-        },
-        {
-          "name": "Response time",
-          "ok": true,
-          "detail": "1193ms",
-          "severity": "ok"
-        },
-        {
           "name": "wp-login exposed",
-          "ok": false,
-          "detail": "Default login page is publicly accessible",
-          "severity": "info"
+          "ok": true,
+          "detail": "Not reachable (good)",
+          "severity": "ok"
         },
         {
           "name": "XML-RPC",
           "ok": true,
-          "detail": "XML-RPC disabled or blocked",
+          "detail": "Not reachable (good)",
           "severity": "ok"
         }
       ]
@@ -166,7 +142,7 @@
         {
           "name": "Uptime",
           "ok": true,
-          "detail": "HTTP 200 — 1168ms",
+          "detail": "HTTP 200 — 1488ms",
           "severity": "ok"
         },
         {
@@ -184,7 +160,7 @@
         {
           "name": "WP version exposed",
           "ok": false,
-          "detail": "WordPress 7.0.4 visible in source",
+          "detail": "WordPress 7.1 visible in source",
           "severity": "warning"
         },
         {
@@ -196,7 +172,7 @@
         {
           "name": "Response time",
           "ok": true,
-          "detail": "1168ms",
+          "detail": "1488ms",
           "severity": "ok"
         },
         {
